@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybertron.local/schema/alert.schema.json",
+  "title": "Cybertron Alert",
+  "type": "object",
+  "required": ["source", "faction", "severity", "title", "ts"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "source": { "type": "string" },
+    "faction": { "enum": ["autobot", "decepticon", "dinobot", "maximal", "predacon"] },
+    "severity": { "enum": ["info", "warn", "critical"] },
+    "title": { "type": "string", "maxLength": 120 },
+    "body": { "type": "string" },
+    "ts": { "type": "number" },
+    "suggested_response": { "type": "string" }
+  }
+}

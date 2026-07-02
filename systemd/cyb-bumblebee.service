@@ -1,0 +1,21 @@
+[Unit]
+Description=Cybertron · Bumblebee (ambient RGB)
+Documentation=file:/opt/cybertron/README.md
+PartOf=cybertron.target
+After=cybertron.target
+
+[Service]
+Type=simple
+Environment=PYTHONPATH=/opt/cybertron
+ExecStart=/opt/cybertron/.venv/bin/python -m ambient.bumblebee --interval 5
+WorkingDirectory=/opt/cybertron
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/run/cybertron
+
+[Install]
+WantedBy=cybertron.target

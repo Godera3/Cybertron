@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# `optimus` — launch the Cybertron HUD.
+set -euo pipefail
+CYB_ROOT="${CYB_ROOT:-/opt/cybertron}"
+export PYTHONPATH="${CYB_ROOT}${PYTHONPATH:+:$PYTHONPATH}"
+exec "${CYB_ROOT}/.venv/bin/python" -m optimus.tui.app "$@"

@@ -1,0 +1,21 @@
+Screen { layout: vertical; }
+
+#hud-header {
+    height: 3; padding: 1 2;
+    background: $panel; border-bottom: heavy $primary;
+    content-align: left middle;
+}
+#prime-grid {
+    layout: grid; grid-size: 4 3; grid-gutter: 1;
+    padding: 1 2; height: 1fr;
+}
+.prime-panel { height: 100%; padding: 0 1; border: round #3a3a3a; }
+.status-ok       { border: round green; }
+.status-warn     { border: round yellow; }
+.status-critical { border: round red; }
+.status-stale    { border: round #777777; color: $text-muted; }
+.status-unknown  { border: round #3a3a3a; color: $text-muted; }
+
+#bottom { height: 12; padding: 0 2 1 2; }
+#threat-panel  { width: 1fr; height: 100%; padding: 1 2; border: round red;      margin-right: 1; }
+#faction-feed  { width: 1fr; height: 100%; padding: 1 2; border: round $primary; }

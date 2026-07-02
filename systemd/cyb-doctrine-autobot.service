@@ -1,0 +1,21 @@
+[Unit]
+Description=Cybertron · Autobot Doctrine (maintenance)
+Documentation=file:/opt/cybertron/README.md
+PartOf=cybertron.target
+After=cybertron.target
+
+[Service]
+Type=simple
+Environment=PYTHONPATH=/opt/cybertron
+ExecStart=/opt/cybertron/.venv/bin/python -m factions.doctrine --faction autobot --interval 3600
+WorkingDirectory=/opt/cybertron
+Restart=on-failure
+RestartSec=30
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/run/cybertron /etc/cybertron
+
+[Install]
+WantedBy=cybertron.target

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybertron.local/schema/status.schema.json",
+  "title": "Cybertron Status Report",
+  "type": "object",
+  "required": ["prime", "domain", "status", "ts", "ttl"],
+  "additionalProperties": false,
+  "properties": {
+    "prime":    { "type": "string", "pattern": "^[a-z][a-z0-9]*$",
+                  "description": "subsystem key; must exist in PRIME_REGISTRY" },
+    "domain":   { "type": "string", "description": "human domain label, e.g. THERMAL/POWER" },
+    "status":   { "enum": ["ok", "warn", "critical", "stale", "unknown"],
+                  "description": "writers emit ok|warn|critical|unknown; 'stale' is reader-derived and not normally persisted" },
+    "headline": { "type": "string", "maxLength": 120,
+                  "description": "one-line human summary for the HUD tile" },
+    "detail":   { "type": "string", "description": "optional longer text for drill-in" },
+    "metrics":  { "type": "object", "description": "free-form numeric/bool/string metrics" },
+    "posture":  { "enum": ["autobot", "decepticon"],
+                  "description": "doctrine this service is running under" },
+    "ts":       { "type": "number", "description": "epoch seconds when written" },
+    "ttl":      { "type": "integer", "minimum": 1,
+                  "description": "seconds; reader marks stale if now > ts + ttl" },
+    "actions":  { "type": "array", "items": { "type": "string" },
+                  "description": "action ids the TUI may request for this Prime" }
+  }
+}

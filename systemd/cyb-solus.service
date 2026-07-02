@@ -1,0 +1,20 @@
+[Unit]
+Description=Cybertron · Solus Prime (packages)
+Documentation=file:/opt/cybertron/README.md
+PartOf=cybertron.target
+After=cybertron.target
+
+[Service]
+Type=simple
+Environment=PYTHONPATH=/opt/cybertron
+ExecStart=/opt/cybertron/.venv/bin/python -m primes.solus.solus --interval 300
+WorkingDirectory=/opt/cybertron
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/run/cybertron
+
+[Install]
+WantedBy=cybertron.target

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybertron.local/schema/aggregate.schema.json",
+  "title": "Cybertron Aggregate",
+  "type": "object",
+  "required": ["threat_level", "posture", "primes", "active_alerts", "matrix", "ts"],
+  "additionalProperties": false,
+  "properties": {
+    "threat_level": { "enum": ["calm", "guarded", "elevated", "severe", "critical"] },
+    "posture": { "enum": ["autobot", "decepticon"] },
+    "primes": { "type": "object",
+      "additionalProperties": { "enum": ["ok","warn","critical","stale","unknown"] } },
+    "active_alerts": { "type": "integer", "minimum": 0 },
+    "matrix": { "type": "string" },
+    "ts": { "type": "number" }
+  }
+}

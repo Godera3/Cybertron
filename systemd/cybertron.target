@@ -1,0 +1,8 @@
+[Unit]
+Description=Cybertron · the whole running system (Primus awakes)
+Documentation=file:/opt/cybertron/README.md
+Wants=cyb-micronus.service cyb-optimus.service cyb-onyx.service cyb-alphatrion.service cyb-vector.service cyb-prima.service cyb-nexus.service cyb-liege.service cyb-solus.service cyb-alchemist.service cyb-amalgamous.service cyb-quintus.service cyb-megatronus.service cyb-doctrine.service cyb-grimlock.service cyb-maximals.service cyb-predacons.service cyb-bumblebee.service cyb-infinity.service
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
