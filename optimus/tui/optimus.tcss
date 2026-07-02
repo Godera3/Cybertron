@@ -10,6 +10,8 @@ Screen { layout: vertical; }
     padding: 1 2; height: 1fr;
 }
 .prime-panel { height: 100%; padding: 0 1; border: round #3a3a3a; }
+.prime-panel:hover { border: round $accent; }
+.prime-panel:focus { border: round $accent; text-style: bold; }
 .status-ok       { border: round green; }
 .status-warn     { border: round yellow; }
 .status-critical { border: round red; }
@@ -19,3 +21,12 @@ Screen { layout: vertical; }
 #bottom { height: 12; padding: 0 2 1 2; }
 #threat-panel  { width: 1fr; height: 100%; padding: 1 2; border: round red;      margin-right: 1; }
 #faction-feed  { width: 1fr; height: 100%; padding: 1 2; border: round $primary; }
+
+/* Detail screen */
+#detail-scroll { padding: 1 2; }
+#detail-banner { padding: 1 1; border: solid $primary; margin-bottom: 1; }
+#detail-lore { padding: 1 2; border: round $secondary; margin-bottom: 1; }
+#detail-metrics { padding: 1 2; border: round #3a3a3a; margin-bottom: 1; }
+#detail-trends { padding: 1 2; border: round $panel; margin-bottom: 1; }
+#detail-actions { padding: 1 2; border: round $accent; margin-bottom: 1; }
+#btn-back { dock: bottom; margin: 1 2; }

@@ -36,6 +36,19 @@ def failed_units() -> list[str]:
         return []
 
 
+def raw_failed_units() -> list[str]:
+    """Return unfiltered failed unit list (to distinguish ignored vs real failures)."""
+    try:
+        out = subprocess.run(
+            ["systemctl", "--failed", "--no-legend"],
+            capture_output=True, text=True, timeout=5,
+        )
+        return [l.split()[1] for l in out.stdout.strip().splitlines()
+                if l.strip() and len(l.split()) > 1]
+    except (subprocess.SubprocessError, FileNotFoundError):
+        return []
+
+
 def system_state() -> str:
     try:
         out = subprocess.run(
@@ -85,12 +98,14 @@ def build_report() -> StatusReport:
     state = system_state()
     metrics["system_state"] = state
     if state == "degraded":
-        if failed:
-            parts.append(f"degraded ({len(failed)} failed)")
+        raw_all = raw_failed_units()
+        real_failed = [u for u in raw_all if u not in IGNORED_FAILED_UNITS]
+        if real_failed:
+            parts.append(f"degraded ({len(real_failed)} failed)")
+            if status != CRITICAL:
+                status = WARN
         else:
-            parts.append("degraded (non-cyb)")
-        if status != CRITICAL:
-            status = WARN
+            metrics["system_state"] = "running"
 
     heals_24h = heal_count_24h()
     metrics["heals_24h"] = heals_24h
